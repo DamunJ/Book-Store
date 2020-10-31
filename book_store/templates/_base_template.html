@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{% block title %}فروشگاه کتاب{% endblock %}</title>
+    <title>{% block title %}فروشگاه کتاب{% endblock title %}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/normalize.css" %}'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -17,7 +17,7 @@
         <!-- Header -->
         <header>
             <nav class="navbar navbar-expand-lg navbar-light fixed-top smart-scroll" style="background-color: #58CCED;">
-                <a class="navbar-brand" href="#">{% block title %}فروشگاه کتاب{% endblock %}</a>
+                <a class="navbar-brand" href="#">{% block nav-title %}فروشگاه کتاب{% endblock nav-title %}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -54,7 +54,7 @@
                         </div>
                     </form>
                 </div>
-
+				
                 <!-- <button type="button" class="btn btn-outline-success"><i class="fa fa-key"></i>ورود</button> -->
                 
                 <div class="dropdown">
