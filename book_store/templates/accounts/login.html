@@ -7,11 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>{{ title }}</title>
+    <title>ورود به سایت</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="{% static 'styles\accounts\style.css' %}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,36 +21,47 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center text-info">
-                {{ header }}
-            </h1>
-            <hr>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form }}
-                        <br>
-                        <button type="submit" class="btn btn-success">send info</button>
-                    </form>
-                    <hr>
-                    <h2><a href="/">go to home page </a></h2>
-                </div>
-            </div>
+<form class="signup" method="POST" autocomplete="off">
+  <h1>ورود به حساب کاربری</h1>
+  <h2>حساب کاربری ندارید؟ <span>ثبت نام</span></h2>
+  {% csrf_token %}
+  <div class="signup__field">
+    {{ form.username }}
+    {% comment %} <input class="signup__input" type="text" name="username" id="username" required /> {% endcomment %}
+    <label class="signup__label" for="username">نام کاربری</label>
+  </div>
+
+  <div class="signup__field">
+    {{ form.password }}
+    {% comment %} <input class="signup__input" type="password" name="password" id="password" required /> {% endcomment %}
+    <label class="signup__label" for="password">رمز عبور</label>
+  </div>
+
+  <button type="submit">ورود</button>
+</form>
+    {% for field in form %}
+        {{ field.errors }}
+    {% endfor %}
+    {% for field in form.visible_fields %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
         </div>
-    </div>
-</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    {% endfor %}
+    {{ form.non_field_errors }}
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
         integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
         crossorigin="anonymous"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-        crossorigin="anonymous"></script>
-</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+{% if error %}
+<script>
+toastr.options.closeButton = true;
+toastr.options.progressBar  = true;
+toastr.options.positionClass  = 'toast-bottom-right';
+toastr.options.rtl = true;
+toastr.error('{{ error }}')
+</script>
+{% endif %}
+</body>
 </html>
