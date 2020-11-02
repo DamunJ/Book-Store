@@ -24,3 +24,6 @@ def login_page(request):
                 "error": "کاربری با این مشخصات یافت نشد!",
             }
     return render(request, 'accounts/login.html', context)
+
+def logout():
+    pass
