@@ -62,14 +62,15 @@
             </div>
 
             <!-- <button type="button" class="btn btn-outline-success"><i class="fa fa-key"></i>ورود</button> -->
-            {% if request.user.is_authenticated %}
+			{% block user_box %}
+            {% if user.is_authenticated %}
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-alt"></i> فلان فلانی
+                        <i class="fa fa-user-alt"></i> {{ user.get_full_name }}
                     </button>
                     <div class="dropdown-menu text-right" aria-labelledby="dropdownMenuButton">
-                        <h6 class="dropdown-header"><i class="fa fa-coin"></i> اعتبار: ۶۰۰۰۰ تومان</h6>
+                        <h6 class="dropdown-header"><i class="fa fa-coin"></i> اعتبار: {{ user.profile.get_balance_display }}</h6>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">حساب کاربری</a>
                         <a class="dropdown-item" href="#">شارژ حساب</a>
@@ -77,13 +78,10 @@
                         <a class="dropdown-item" href="#">خروج</a>
                     </div>
                 </div>
+			{% else %}
+                <a class="btn btn-primary" href="{% url 'login' %}"><i class="fa fa-key"></i>ورود / ثبت‌نام</a>
             {% endif %}
-        {% if not request.user.is_authenticated %}
-            <button class="btn btn-info " type="button" id="dropdownMenuButton"
-                     aria-haspopup="true" aria-expanded="false">
-                <a class="fa fa-user-alt" href="/account/login"></a> ورود
-            </button>
-        {% endif %}
+            {% endblock %}
         </nav>
     </header>
     {% block content %}
