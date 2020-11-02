@@ -23,7 +23,7 @@
 <body>
 <form class="signup" method="POST" autocomplete="off">
     <h1>ساخت حساب کاربری</h1>
-    <h2>حساب کاربری دارید؟ <a href="login" style="color: #a4243b">ورود</a></h2>
+    <h2>حساب کاربری دارید؟ <a href="/account/login" style="color: #a4243b">ورود</a></h2>
     {% csrf_token %}
     <div class="signup__field">
         {{ form.username }}

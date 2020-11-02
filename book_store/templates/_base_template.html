@@ -8,22 +8,25 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     {% load static %}
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/normalize.css" %}'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/main.css" %}'>
 </head>
 
 <body>
-    <div class="bg-light couter">
-        <!-- Header -->
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top smart-scroll" style="background-color: #58CCED;">
-                <a class="navbar-brand" href="#">{% block nav-title %}فروشگاه کتاب{% endblock nav-title %}</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
+<div class="bg-light couter">
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top smart-scroll" style="background-color: #58CCED;">
+            <a class="navbar-brand" href="#">{% block nav-title %}فروشگاه کتاب{% endblock nav-title %}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">خانه <span class="sr-only">(current)</span></a>
                     </li>
@@ -34,79 +37,91 @@
                         <a class="nav-link" href="#">درباره‌ما</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        دسته‌بندی‌ها
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            دسته‌بندی‌ها
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">رمان</a>
-                        <a class="dropdown-item" href="#">علمی</a>
-                        <a class="dropdown-item" href="#">مذهبی</a>
+                            <a class="dropdown-item" href="#">رمان</a>
+                            <a class="dropdown-item" href="#">علمی</a>
+                            <a class="dropdown-item" href="#">مذهبی</a>
                         </div>
                     </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="input-group">
-                            <input type="text" class="form-control rounded-0" placeholder="جستجو کنید" aria-label="Search" aria-describedby="search-btn">
-                            <div class="input-group-prepend">
-                                <button class="input-group-text" type="submit" id="search-btn">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control rounded-0" placeholder="جستجو کنید" aria-label="Search"
+                               aria-describedby="search-btn">
+                        <div class="input-group-prepend">
+                            <button class="input-group-text" type="submit" id="search-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
-                    </form>
-                </div>
-				
-                <!-- <button type="button" class="btn btn-outline-success"><i class="fa fa-key"></i>ورود</button> -->
-                
+                    </div>
+                </form>
+            </div>
+
+            <!-- <button type="button" class="btn btn-outline-success"><i class="fa fa-key"></i>ورود</button> -->
+            {% if request.user.is_authenticated %}
                 <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-user-alt"></i> فلان فلانی
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-alt"></i> فلان فلانی
                     </button>
                     <div class="dropdown-menu text-right" aria-labelledby="dropdownMenuButton">
                         <h6 class="dropdown-header"><i class="fa fa-coin"></i> اعتبار: ۶۰۰۰۰ تومان</h6>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">حساب کاربری</a>
-                      <a class="dropdown-item" href="#">شارژ حساب</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">خروج</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">حساب کاربری</a>
+                        <a class="dropdown-item" href="#">شارژ حساب</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">خروج</a>
                     </div>
                 </div>
-
-            </nav>
-        </header>
-        {% block content %}
-        {% endblock %}
-        <br>
-        <hr>
-        <!-- Footer -->
-        <footer class="container py-5">
-            <div class="row">
-              <div class="col-12 col-md">
-                  <h5>فروشگاه کتاب</h5>
-                  <p class="text-right text-muted" style="font-size: 0.8em;">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
+            {% endif %}
+        {% if not request.user.is_authenticated %}
+            <button class="btn btn-info " type="button" id="dropdownMenuButton"
+                     aria-haspopup="true" aria-expanded="false">
+                <a class="fa fa-user-alt" href="/account/login"></a> ورود
+            </button>
+        {% endif %}
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <br>
+    <hr>
+    <!-- Footer -->
+    <footer class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md">
+                <h5>فروشگاه کتاب</h5>
+                <p class="text-right text-muted" style="font-size: 0.8em;">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
+                    از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان
+                    که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
+                    باشد</p>
                 <small class="d-block mb-3 text-muted text-center">کپی رایت &copy; 2020</small>
-              </div>
-              <div class="col-6 col-md text-center">
+            </div>
+            <div class="col-6 col-md text-center">
                 <h5>قابلیت‌ها</h5>
                 <ul class="list-unstyled text-small text-right">
-                  <li><a class="text-muted" href="#">زیرمنوی اول</a></li>
-                  <li><a class="text-muted" href="#">زیرمنوی دوم</a></li>
-                  <li><a class="text-muted" href="#">زیرمنوی سوم</a></li>
-                  <li><a class="text-muted" href="#">زیرمنوی چهارم</a></li>
-                  <li><a class="text-muted" href="#">زیرمنوی پنجم</a></li>
-                  <li><a class="text-muted" href="#">زیرمنوی ششم</a></li>
+                    <li><a class="text-muted" href="#">زیرمنوی اول</a></li>
+                    <li><a class="text-muted" href="#">زیرمنوی دوم</a></li>
+                    <li><a class="text-muted" href="#">زیرمنوی سوم</a></li>
+                    <li><a class="text-muted" href="#">زیرمنوی چهارم</a></li>
+                    <li><a class="text-muted" href="#">زیرمنوی پنجم</a></li>
+                    <li><a class="text-muted" href="#">زیرمنوی ششم</a></li>
                 </ul>
-              </div>
-              <div class="col-6 col-md text-center">
+            </div>
+            <div class="col-6 col-md text-center">
                 <h5>منابع</h5>
                 <ul class="list-unstyled text-small text-right">
                     <li><a class="text-muted" href="#">زیرمنوی اول</a></li>
                     <li><a class="text-muted" href="#">زیرمنوی دوم</a></li>
                     <li><a class="text-muted" href="#">زیرمنوی سوم</a></li>
                     <li><a class="text-muted" href="#">زیرمنوی چهارم</a></li>
-                  </ul>
-              </div>
-              <div class="col-6 col-md text-center">
+                </ul>
+            </div>
+            <div class="col-6 col-md text-center">
                 <h5>کتاب‌ها</h5>
                 <ul class="list-unstyled text-small text-right">
                     <li><a class="text-muted" href="#">زیرمنوی اول</a></li>
@@ -114,22 +129,26 @@
                     <li><a class="text-muted" href="#">زیرمنوی سوم</a></li>
                     <li><a class="text-muted" href="#">زیرمنوی چهارم</a></li>
                     <li><a class="text-muted" href="#">زیرمنوی پنجم</a></li>
-                  </ul>
-              </div>
-              <div class="col-6 col-md text-center">
+                </ul>
+            </div>
+            <div class="col-6 col-md text-center">
                 <h5>درباره ما</h5>
                 <ul class="list-unstyled text-small text-right">
                     <li><a class="text-muted" href="#">زیرمنوی اول</a></li>
                     <li><a class="text-muted" href="#">زیرمنوی دوم</a></li>
                     <li><a class="text-muted" href="#">زیرمنوی سوم</a></li>
-                  </ul>
-              </div>
+                </ul>
             </div>
-        </footer>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    {% load static %}
-    <script src="{% static "scripts/main.js" %}"></script> <!-- Static -->
+        </div>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+{% load static %}
+<script src="{% static "scripts/main.js" %}"></script> <!-- Static -->
 </body>
 </html>
