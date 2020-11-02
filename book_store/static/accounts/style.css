@@ -23,6 +23,13 @@ input {
   outline: none;
 }
 
+a:link, a:visited {
+  color: #3185FC !important;
+}
+a:active, a:hover {
+  color: #055864 !important;
+}
+
 /****************
       FORM
 *****************/
@@ -127,4 +134,87 @@ button:hover {
 
 .toast-title, .toast-message {
   font-size: 0.8em !important;
+}
+
+/****************
+      MENU
+*****************/
+
+.menu {
+  height: 100vh;
+  width: 20%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(100%);
+  position: fixed;
+  right: 0px;
+  z-index: 0;
+  transition: 1s;
+  overflow: hidden;
+}
+
+.menu h1 {
+  margin-bottom: 32px;
+  padding: 20px;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-align: center;
+  width: 100%;
+  height: 32px;
+}
+
+.menu h2 {
+  margin: 12px;
+  font-size: 24px;
+  font-weight: 200;
+  position: relative;
+  z-index: 2;
+}
+
+.menu a:link,
+.menu a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.line {
+  height: 4px;
+  width: 40px;
+  top: 0;
+  background-color: white;
+  transition: 1s;
+  position: absolute;
+}
+
+.two {
+  top: 12px;
+}
+
+.three {
+  top: 24px;
+}
+
+.hamburger {
+  margin: 38px;
+  position: fixed;
+  top: 4%;
+  right: 2%;
+  cursor: pointer;
+  background-color: transparent;
+  height: 30px;
+  width: 40px;
+  z-index: 1;
+}
+.open .line {
+  background-color: #055864;
+}
+
+@media screen and (max-width: 650px) {
+  .hamburger, .menu {
+    display: none;
+  }
 }

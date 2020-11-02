@@ -10,7 +10,7 @@
     <title>{% block title %}{% endblock %} </title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" href="{% static 'styles\accounts\style.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts\style.css' %}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,6 +21,21 @@
 </head>
 
 <body>
+
+<!-- Menu -->
+<div class="hamburger closed">
+  <div class="line one"></div>
+  <div class="line two"></div>
+  <div class="line three"></div>
+</div>
+
+<div class="menu">
+  <h1>منو</h1>
+  <h2 class="link"><a href="#">خانه</a></h2>
+  <h2 class="link"><a href="#">درباره ما</a></h2>
+  <h2 class="link"><a href="#">سوالات متداول</a></h2>
+</div>
+<!-- End Menu -->
 {% block form %}
 {% endblock %}
 
@@ -28,6 +43,7 @@
         integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="{% static 'accounts\script.js' %}"></script>
 
 {% block error %}
 {% endblock %}
