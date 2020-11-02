@@ -1,10 +1,81 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ثبت نام</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="{% static 'styles\accounts\style.css' %}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-$END$
+<form class="signup" method="POST" autocomplete="off">
+    <h1>ساخت حساب کاربری</h1>
+    <h2>حساب کاربری دارید؟ <a href="login" style="color: #a4243b">ورود</a></h2>
+    {% csrf_token %}
+    <div class="signup__field">
+        {{ form.username }}
+        {% comment %} <input class="signup__input" type="text" name="username" id="username" required /> {% endcomment %}
+        <label class="signup__label" for="username">نام کاربری</label>
+    </div>
+
+
+    <div class="signup__field">
+        {{ form.email }}
+        {% comment %} <input class="signup__input" type="text" name="username" id="username" required /> {% endcomment %}
+        <label class="signup__label" for="username">ایمیل</label>
+    </div>
+
+    <div class="signup__field">
+        {{ form.password }}
+        {% comment %} <input class="signup__input" type="password" name="password" id="password" required /> {% endcomment %}
+        <label class="signup__label" for="password">رمز عبور</label>
+    </div>
+
+      <div class="signup__field">
+    {{ form.confirm_password }}
+    {% comment %} <input class="signup__input" type="text" name="username" id="username" required /> {% endcomment %}
+    <label class="signup__label" for="username">تکرار رمز عبور</label>
+  </div>
+
+
+    <button type="submit">ثبت نام</button>
+</form>
+{% for field in form %}
+    {{ field.errors }}
+{% endfor %}
+{% for field in form.visible_fields %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+    </div>
+{% endfor %}
+{{ form.non_field_errors }}
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+{% if error %}
+    <script>
+        toastr.options.closeButton = true;
+        toastr.options.progressBar = true;
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.options.rtl = true;
+        toastr.error('{{ error }}')
+    </script>
+{% endif %}
 </body>
 </html>

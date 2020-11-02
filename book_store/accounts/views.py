@@ -1,8 +1,9 @@
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login, get_user_model
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .form import  LoginForm
+from .form import LoginForm, RegisterForm
 from django.urls import reverse
+
 
 def login_page(request):
     form = LoginForm(request.POST or None)
@@ -10,6 +11,8 @@ def login_page(request):
     context = {
         "form": form,
     }
+    if request.user.is_authenticated:  # چک میکنه ببینه یوزر لاگین شده یا نه (:
+        return redirect('/')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -23,4 +26,23 @@ def login_page(request):
                 "form": form,
                 "error": "کاربری با این مشخصات یافت نشد!",
             }
+
     return render(request, 'accounts/login.html', context)
+
+
+User = get_user_model()
+
+
+def register(request):
+    form = RegisterForm(request.POST or None)
+    if request.user.is_authenticated:
+        return redirect('/')
+    context = {'form': form}
+    if form.is_valid():
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        new_user = User.objects.create_user(username=username, password=password, email=email)
+        print(new_user)
+        return redirect('/')
+    return render(request, 'accounts/register.html', context)
