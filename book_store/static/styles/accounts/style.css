@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #4b111b;
+  background-color: #055864;
   width: 100%;
   min-height: 100vh;
 
@@ -42,7 +42,7 @@ input {
 
 h1 {
   text-align: center;
-  color: #a4243b;
+  color: #3185FC;
 }
 h2 {
   text-align: center;
@@ -55,7 +55,7 @@ h2 {
 h2 span {
   text-decoration: underline;
   cursor: pointer;
-  color: #a4243b;
+  color: #3185FC;
 }
 
 /*  Field */
@@ -73,7 +73,7 @@ h2 span {
   position: absolute;
   width: 0px;
   height: 2px;
-  background: #a4243b;
+  background: #3185FC;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -113,7 +113,7 @@ h2 span {
 
 /*  Button */
 button {
-  background: #a4243b;
+  background: #3185FC;
   color: white;
   padding: 12px 0;
   font-size: 1.2rem;
@@ -122,7 +122,7 @@ button {
 }
 
 button:hover {
-  background: #4b111b;
+  background: #055864;
 }
 
 .toast-title, .toast-message {
