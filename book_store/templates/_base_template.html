@@ -56,21 +56,25 @@
                     </form>
                 </div>
 				
-                <!-- <button type="button" class="btn btn-outline-success"><i class="fa fa-key"></i>ورود</button> -->
-                
+                {% block user_box %}
+                {% if user.is_authenticated %}
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-user-alt"></i> فلان فلانی
+                        <i class="fa fa-user-alt"></i> {{ user.get_full_name }}
                     </button>
                     <div class="dropdown-menu text-right" aria-labelledby="dropdownMenuButton">
-                        <h6 class="dropdown-header"><i class="fa fa-coin"></i> اعتبار: ۶۰۰۰۰ تومان</h6>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">حساب کاربری</a>
-                      <a class="dropdown-item" href="#">شارژ حساب</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">خروج</a>
+                        <h6 class="dropdown-header"><i class="fa fa-coin"></i> اعتبار: {{ user.profile.get_balance_display }}</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">حساب کاربری</a>
+                        <a class="dropdown-item" href="#">شارژ حساب</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">خروج</a>
                     </div>
                 </div>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'login' %}"><i class="fa fa-key"></i>ورود / ثبت‌نام</a>
+                {% endif %}
+                {% endblock %}
 
             </nav>
         </header>
