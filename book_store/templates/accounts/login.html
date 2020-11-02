@@ -1,59 +1,29 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
+{% extends 'accounts/_account_base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ورود به سایت</title>
+{% block title %}
+ورود به سایت
+{% endblock %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" href="{% static 'styles\accounts\style.css' %}">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
+{% block form %}
 <form class="signup" method="POST" autocomplete="off">
   <h1>ورود به حساب کاربری</h1>
   <h2>حساب کاربری ندارید؟ <a href="{% url 'register' %}" style="color: #a4243b">ثبت نام</a></h2>
   {% csrf_token %}
   <div class="signup__field">
     {{ form.username }}
-    {% comment %} <input class="signup__input" type="text" name="username" id="username" required /> {% endcomment %}
     <label class="signup__label" for="username">نام کاربری</label>
   </div>
 
   <div class="signup__field">
     {{ form.password }}
-    {% comment %} <input class="signup__input" type="password" name="password" id="password" required /> {% endcomment %}
     <label class="signup__label" for="password">رمز عبور</label>
   </div>
 
   <button type="submit">ورود</button>
 </form>
-    {% for field in form %}
-        {{ field.errors }}
-    {% endfor %}
-    {% for field in form.visible_fields %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-        </div>
-    {% endfor %}
-    {{ form.non_field_errors }}
+{% endblock %}
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"
-        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+{% block error %}
 {% if error %}
 <script>
 toastr.options.closeButton = true;
@@ -63,5 +33,4 @@ toastr.options.rtl = true;
 toastr.error('{{ error }}')
 </script>
 {% endif %}
-</body>
-</html>
+{% endblock %}
