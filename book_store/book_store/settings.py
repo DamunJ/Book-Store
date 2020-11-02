@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'shopping',
+    'accounts.apps.AccountsConfig',
+    'shopping.apps.ShoppingConfig',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +118,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = ''
 STATICFILES_DIRS = (os.path.join('static'),)
+
+
+# Media files
+
+MEDIA_ROOT = '/media/'
