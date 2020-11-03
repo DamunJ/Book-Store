@@ -34,8 +34,6 @@ class Profile(models.Model):
     Manages the users' profile
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='حساب کاربری')
-    
-    birthdate = models.DateField(blank=True, null=True)
 
     mobile = models.CharField('تلفن همراه', max_length=11, null=True, blank=True)
     
