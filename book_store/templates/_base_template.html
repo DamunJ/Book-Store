@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/main.css" %}'>
-    <link rel="icon" href="{% static 'favico.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
 </head>
 
@@ -36,7 +36,7 @@
                         <a class="nav-link" href="#">کتاب‌ها</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">درباره‌ما</a>
+                        <a class="nav-link" href="{% url "about-us" %}">درباره‌ما</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"

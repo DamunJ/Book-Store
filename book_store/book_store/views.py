@@ -8,3 +8,8 @@ def home_page(request):
     }
 
     return render(request, 'homepage.html', context)
+
+
+def about_us(request):
+    context = {}
+    return render(request, 'about_us.html', context)
