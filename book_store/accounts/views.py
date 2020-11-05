@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .form import LoginForm, RegisterForm
+from .models import Profile
 from django.urls import reverse
 
 
@@ -30,7 +31,6 @@ def login_page(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
-    
 
 
 User = get_user_model()
@@ -45,7 +45,8 @@ def register(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        new_user = User.objects.create_user(username=username, password=password, email=email)
+        new_user = User.objects.create_user(username=username, password=password, email=email, )
+
         print(new_user)
         return redirect('/')
     return render(request, 'accounts/register.html', context)

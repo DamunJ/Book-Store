@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/main.css" %}'>
+    <link rel="icon" href="{% static 'favico.ico' %}" type="image/x-icon">
+
 </head>
 
 <body>
@@ -75,7 +77,7 @@
                         <a class="dropdown-item" href="#">حساب کاربری</a>
                         <a class="dropdown-item" href="#">شارژ حساب</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">خروج</a>
+                        <a class="dropdown-item" href="{% url  "logout" %}">خروج</a>
                     </div>
                 </div>
 			{% else %}

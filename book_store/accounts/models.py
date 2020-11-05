@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from uuid import uuid4
 
 
-
 def path_and_rename(instance, filename):
     upload_to = 'profiles/images'
     ext = filename.split('.')[-1]
@@ -16,6 +15,7 @@ def path_and_rename(instance, filename):
         filename = '{}.{}'.format(uuid4().hex, ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
+
     def wrapper(instance, filename):
         ext = filename.split('.')[-1]
         # get filename
@@ -26,6 +26,7 @@ def path_and_rename(instance, filename):
             filename = '{}.{}'.format(uuid4().hex, ext)
         # return the whole path to the file
         return os.path.join(path, filename)
+
     return wrapper
 
 
@@ -36,10 +37,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='حساب کاربری')
 
     mobile = models.CharField('تلفن همراه', max_length=11, null=True, blank=True)
-    
+
     birth_date = models.DateField('تاریخ تولد', null=True, blank=True)
     address = models.TextField('آدرس', null=True, blank=True)
-    
+
     MALE = 1
     FEMALE = 2
     GENDER_CHOICES = ((MALE, 'مرد'), (FEMALE, 'زن'))
@@ -51,7 +52,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.get_full_name()
-    
+
     def get_balance_display(self):
         return '{} تومان'.format(self.balance)
 
