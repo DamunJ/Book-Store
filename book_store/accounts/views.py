@@ -46,7 +46,10 @@ def register(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         new_user = User.objects.create_user(username=username, password=password, email=email, )
-
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
         print(new_user)
         return redirect('/')
     return render(request, 'accounts/register.html', context)
