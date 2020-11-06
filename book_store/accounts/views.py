@@ -45,7 +45,9 @@ def register(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        new_user = User.objects.create_user(username=username, password=password, email=email, )
+        new_user = User.objects.create_user(username=username, password=password, email=email)
+        p = Profile(user=new_user)
+        p.save()
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)

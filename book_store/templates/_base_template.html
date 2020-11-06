@@ -69,7 +69,7 @@
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-alt"></i> {{ user.get_full_name }}
+                        <i class="fa fa-user-alt">{{ user.username }}</i>
                     </button>
                     <div class="dropdown-menu text-right" aria-labelledby="dropdownMenuButton">
                         <h6 class="dropdown-header"><i class="fa fa-coin"></i> اعتبار: {{ user.profile.get_balance_display }}</h6>

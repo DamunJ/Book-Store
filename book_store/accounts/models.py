@@ -1,11 +1,13 @@
 import os
+from sys import path
+
 from django.db import models
 from django.contrib.auth.models import User
 from uuid import uuid4
 
 
 def path_and_rename(instance, filename):
-    upload_to = 'profiles/images'
+    upload_to = 'images/Profiles'
     ext = filename.split('.')[-1]
     # get filename
     if instance.pk:
@@ -51,7 +53,7 @@ class Profile(models.Model):
     balance = models.IntegerField('اعتبار', default=0)
 
     def __str__(self):
-        return self.user.get_full_name()
+        return self.user.username
 
     def get_balance_display(self):
         return '{} تومان'.format(self.balance)
