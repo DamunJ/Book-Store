@@ -1,9 +1,9 @@
 import os
 from sys import path
-
-from django.db import models
-from django.contrib.auth.models import User
 from uuid import uuid4
+
+from django.contrib.auth.models import User
+from django.db import models
 
 
 def path_and_rename(instance, filename):
@@ -43,9 +43,7 @@ class Profile(models.Model):
     birth_date = models.DateField('تاریخ تولد', null=True, blank=True)
     address = models.TextField('آدرس', null=True, blank=True)
 
-    MALE = 1
-    FEMALE = 2
-    GENDER_CHOICES = ((MALE, 'مرد'), (FEMALE, 'زن'))
+    GENDER_CHOICES = ((1, 'مرد'), (2, 'زن'))
     gender = models.IntegerField('جنسیت', choices=GENDER_CHOICES, null=True, blank=True)
 
     profile_image = models.ImageField('تصویر', upload_to=path_and_rename, blank=True, null=True)

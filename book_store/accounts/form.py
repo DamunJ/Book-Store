@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
+from .models import Profile
+
 User = get_user_model()
 
 
@@ -50,3 +52,22 @@ class RegisterForm(forms.Form):
         if qs.exists():
             raise forms.ValidationError("email is already taken")
         return email
+
+
+class Panel(forms.Form):
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control ', 'placeholder': '09', 'type': 'number', 'default': '09'}))
+
+    address = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control ', 'rows': '5', 'placeholder': 'enter your address'})
+    )
+
+    birthday = forms.CharField(widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+
+    gender = forms.ChoiceField(choices=((1, 'Male'), (2, 'Female')), help_text='Choose your gender',
+                               widget=forms.Select(attrs={'class': "form-control"}))
+
+    image = forms.CharField(
+        widget=forms.TextInput(attrs={'type': 'file', 'name': 'image', 'accept': 'image/*', 'id': 'id_image'}))
+
