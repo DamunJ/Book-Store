@@ -68,5 +68,5 @@ def panel(request):
     # print(gender)
     if request.method == "POST":
         if form.is_valid():
-            Profile.objects.get_queryset()  # TODO just fucking spend your time and fix this piece of shit 
+            Profile.objects.get_queryset()  # TODO just  fix this
     return render(request, 'accounts/user_complete.html', context)
