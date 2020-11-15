@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
           integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/main.css" %}'>
-    <link rel="icon" href="{% static 'favico.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
 </head>
 
@@ -30,13 +30,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">خانه <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'homepage' %}">خانه <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">کتاب‌ها</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">درباره‌ما</a>
+                        <a class="nav-link" href="about-us">درباره‌ما</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -69,7 +69,7 @@
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-alt"></i> {{ user.get_full_name }}
+                        <i class="fa fa-user-alt">{{ user.username }}</i>
                     </button>
                     <div class="dropdown-menu text-right" aria-labelledby="dropdownMenuButton">
                         <h6 class="dropdown-header"><i class="fa fa-coin"></i> اعتبار: {{ user.profile.get_balance_display }}</h6>

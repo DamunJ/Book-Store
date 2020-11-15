@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .form import LoginForm, RegisterForm
-from .models import Profile
+from django.shortcuts import render, redirect
 from django.urls import reverse
+
+from .form import LoginForm, RegisterForm, Panel
+from .models import Profile
 
 
 def login_page(request):
@@ -42,11 +43,30 @@ def register(request):
         return redirect('/')
     context = {'form': form}
     if form.is_valid():
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        new_user = User.objects.create_user(username=username, password=password, email=email, )
+        username, email, password = request.POST.get('username'), request.POST.get('email'), request.POST.get(
+            'password')
 
-        print(new_user)
+        new_user = User.objects.create_user(username=username, password=password, email=email)
+        Profile(user=new_user).save()
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
         return redirect('/')
     return render(request, 'accounts/register.html', context)
+
+
+def panel(request):
+    form = Panel(request.POST or None)
+    context = {
+        'form': form,
+        'header': 'panel',
+    }
+    # print(phone)
+    # print(address)
+    # print(birth)
+    # print(gender)
+    if request.method == "POST":
+        if form.is_valid():
+            Profile.objects.get_queryset()  # TODO just  fix this
+    return render(request, 'accounts/user_complete.html', context)
