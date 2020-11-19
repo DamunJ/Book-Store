@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .form import LoginForm, RegisterForm, Panel
+from .form import LoginForm, RegisterForm, ProfileUpdate
 from .models import Profile
 
 
@@ -29,6 +30,7 @@ def login_page(request):
     return render(request, 'accounts/login.html', context)
 
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -55,18 +57,22 @@ def register(request):
         return redirect('/')
     return render(request, 'accounts/register.html', context)
 
+@login_required
+def profile(request):
+    context = {
+        'name': 'salam'
+    }
+    return render(request, 'accounts/profile.html', context)
 
-def panel(request):
-    form = Panel(request.POST or None)
+@login_required
+def profile_update(request):
+    form = ProfileUpdate(request.POST or None, instance=request.user.profile)
     context = {
         'form': form,
-        'header': 'panel',
+        'header': 'ProfileUpdate',
     }
-    # print(phone)
-    # print(address)
-    # print(birth)
-    # print(gender)
     if request.method == "POST":
         if form.is_valid():
-            Profile.objects.get_queryset()  # TODO just  fix this
-    return render(request, 'accounts/user_complete.html', context)
+            form = ProfileUpdate(request.POST, instance= request.user.profile)
+            form.save()
+    return render(request, 'accounts/profile_edit.html', context)
