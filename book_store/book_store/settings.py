@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'shopping.apps.ShoppingConfig',
+    'star_ratings'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,13 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.template.context_processors.request",
+    "django.template.context_processors",
+    "django.template.context_processors.debug",
+    "django.template.context_processors.i18n",
+)
 
 WSGI_APPLICATION = 'book_store.wsgi.application'
 
