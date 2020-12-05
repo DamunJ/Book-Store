@@ -131,3 +131,7 @@ STATICFILES_DIRS = (os.path.join('static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media_root')
+
+# star rating settings
+STAR_RATINGS_STAR_HEIGHT = 35
+STAR_RATINGS_STAR_WIDTH = 35
