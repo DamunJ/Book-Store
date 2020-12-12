@@ -2,7 +2,7 @@
 A simple book store with django
 # TODO
 - [ ] Complete the remaining page templates
-  - [ ] Homepage template
+  - [x] Homepage template
   - [ ] Booklist template
   - [ ] Book details template
   - [ ] Cart shopping template
