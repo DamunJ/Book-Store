@@ -1,12 +1,12 @@
 from django import forms
-from django.forms import Form, ModelForm
 from django.contrib.auth import get_user_model
+
 from .models import Profile
 
 User = get_user_model()
 
 
-class LoginForm(Form):
+class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'signup__input', 'name': 'username', 'id': 'username'})
     )
@@ -54,24 +54,20 @@ class RegisterForm(forms.Form):
         return email
 
 
-class ProfileUpdate(ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ['user', 'balance']
-    
-    # phone_number = forms.CharField(
-        # widget=forms.TextInput(
-            # attrs={'class': 'form-control ', 'placeholder': '09', 'type': 'number', 'default': '09'}))
+class Panel(forms.Form):
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control ', 'placeholder': '09', 'type': 'number', 'default': '09'}))
 
-    # address = forms.CharField(
-        # widget=forms.Textarea(attrs={'class': 'form-control ', 'rows': '5', 'placeholder': 'enter your address'})
-    # )
+    address = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control ', 'rows': '5', 'placeholder': 'enter your address'})
+    )
 
-    # birthday = forms.CharField(widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+    birthday = forms.CharField(widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
 
-    # gender = forms.ChoiceField(choices=((1, 'Male'), (2, 'Female')), help_text='Choose your gender',
-                               # widget=forms.Select(attrs={'class': "form-control"}))
+    gender = forms.ChoiceField(choices=((1, 'Male'), (2, 'Female')), help_text='Choose your gender',
+                               widget=forms.Select(attrs={'class': "form-control"}))
 
-    # image = forms.CharField(
-        # widget=forms.TextInput(attrs={'type': 'file', 'name': 'image', 'accept': 'image/*', 'id': 'id_image'}))
+    image = forms.CharField(
+        widget=forms.TextInput(attrs={'type': 'file', 'name': 'image', 'accept': 'image/*', 'id': 'id_image'}))
 
